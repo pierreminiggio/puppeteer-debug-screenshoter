@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 /**
  * @param {import('puppeteer').Page} page 
  * @param {number} ms
@@ -10,6 +12,13 @@ export default function periodicallyScreenshot(page, ms, width = 1280, height = 
         i++
         try {
             await page.setViewport({width, height})
+            try {
+                const html = await page.evaluate(() => document.querySelector('*').outerHTML)
+                fs.writeFileSync('html/' + i + '.html', html)
+            } catch (e) {
+                fs.writeFileSync('html/' + i + '.html', '')
+            }
+            
             await page.screenshot({path: 'screenshots/' + i + '.png', fullPage: true})
         } catch (e) {
             clearInterval(interval)
