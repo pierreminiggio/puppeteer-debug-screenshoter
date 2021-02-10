@@ -7,5 +7,5 @@ npm install pierreminiggio/puppeteer-debug-screenshoter
 
 Utilisation : 
 ```javascript
-import scroll from '@pierreminiggio/puppeteer-debug-screenshoter'
+import periodicallyScreenshot from '@pierreminiggio/puppeteer-debug-screenshoter'
 ```
